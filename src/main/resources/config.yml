@@ -1,0 +1,76 @@
+# DOKAIBE AI configuration. Never put API keys or PINs in public repositories.
+identity:
+  display-name: "DOKAIBE"
+  prefix: "[DOKAIBE AI]"
+  icon: "✦"
+  primary-color: "#B78AFF" # Purple
+  secondary-color: "#8B6A36" # Dark gold
+  player-format: "{prefix} {message}"
+  admin-format: "{prefix} <dark_gray>•</dark_gray> <#B78AFF>ADMIN</#B78AFF> {message}"
+  owner-format: "{prefix} <dark_gray>•</dark_gray> <#D9A441>SUPREME FOUNDER</#D9A441> {message}"
+  system-format: "{prefix} {message}"
+  activation-message: "<italic>✦ Dokaibe has awakened.</italic>"
+  shutdown-message: "<italic>✦ Dokaibe has gone offline.</italic>"
+  founder-name: "Zeroxxxy"
+  founder-title: "Supreme Founder"
+
+# Founder UUID is mandatory. Use /dokaibe whoami to inspect a player's UUID.
+# Only this UUID is allowed to change protected core authority settings.
+security:
+  founder-uuid: "00000000-0000-0000-0000-000000000000"
+  owner-uuids: [] # Additional owners; cannot edit founder-locked controls.
+  admin-uuids: []
+  offline-mode-warning: true
+  require-owner-pin: false
+  owner-pin-hash: "" # Optional SHA-256 hex hash; never store a plain PIN.
+  max-chat-messages-per-minute: 8
+
+activation:
+  start-enabled: false
+  # Optional physical redstone input. Set enabled true and fill exact coordinates.
+  redstone:
+    enabled: false
+    world: "world"
+    x: 0
+    y: 64
+    z: 0
+    powered-state: true # true = power ON activates; power OFF deactivates
+
+chat:
+  trigger: "Dokaibe"
+  rules:
+    - "Be respectful. No cheating, exploiting, harassment, or griefing."
+    - "Follow staff instructions and protect other players' builds."
+  help-message: "Ask me about server rules, online players, or basic Minecraft help."
+
+ai:
+  enabled: false
+  endpoint: "https://api.openai.com/v1/chat/completions"
+  model: "gpt-4o-mini"
+  api-key: "" # Prefer environment variable DOKAIBE_API_KEY.
+  timeout-seconds: 20
+  system-prompt: "You are Dokaibe, a helpful Minecraft server assistant. Never issue or invent console commands. You cannot change permissions or founder settings."
+
+discord:
+  bridge-enabled: false
+  bridge-host: "127.0.0.1"
+  bridge-port: 8765
+  bridge-token: "" # Long random secret; also set DOKAIBE_BRIDGE_TOKEN in bot environment.
+  owner-user-ids: [] # Discord numeric user IDs, never display names.
+  admin-user-ids: []
+  webhook-url: "" # Optional incoming webhook for reports; keep private.
+  report-joins-leaves: true
+  report-deaths: false
+  report-activation: true
+
+monitoring:
+  enabled: true
+  report-joins-leaves: true
+  report-deaths: true
+
+actions:
+  require-confirmation: true
+  temporary-op-max-minutes: 10 # OP is disabled by default; no AI OP action is implemented.
+
+database:
+  file: "dokaibe.db"
